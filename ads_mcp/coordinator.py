@@ -31,6 +31,9 @@ _CLIENT_ID = os.environ.get("GOOGLE_ADS_MCP_OAUTH_CLIENT_ID")
 _CLIENT_SECRET = os.environ.get("GOOGLE_ADS_MCP_OAUTH_CLIENT_SECRET")
 _BASE_URL = os.environ.get("GOOGLE_ADS_MCP_BASE_URL", "http://localhost:8080")
 _JWT_SIGNING_KEY = os.environ.get("GOOGLE_ADS_MCP_JWT_SIGNING_KEY")
+_ACCESS_TOKEN_EXPIRY_SECONDS = int(
+    os.environ.get("GOOGLE_ADS_MCP_ACCESS_TOKEN_EXPIRY_SECONDS", "2592000")
+)
 
 if _CLIENT_ID and _CLIENT_SECRET:
     client_storage = create_client_storage()
@@ -38,6 +41,7 @@ if _CLIENT_ID and _CLIENT_SECRET:
         "client_id": _CLIENT_ID,
         "client_secret": _CLIENT_SECRET,
         "base_url": _BASE_URL,
+        "fastmcp_access_token_expiry_seconds": _ACCESS_TOKEN_EXPIRY_SECONDS,
         "required_scopes": [
             "openid",
             "https://www.googleapis.com/auth/userinfo.email",
